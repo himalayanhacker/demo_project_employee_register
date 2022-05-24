@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<table class="table table-borderless">
+    <thead class="border-bottom font-weigth-bold">
+        <tr>
+            <td>Full Name</td>
+            <td>Mobile</td>
+            <td>Position</td>
+            <td>
+                <a href="{% url 'emp_insert' %}" class='btn btn-outline-success btn-sm' >
+                    <i class="fas fa-plus"></i> Add Item
+                </a>
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for i in sh %}
+        <tr>
+            <td>{{i.fullname}}</td>
+            <td>{{i.mobile}}</td>
+            <td>{{i.position}}</td>
+            <td> <form action="{% url 'upd' i.id %}">
+                <button class="btn btn-outline-dark" type="submit"> Edit</button>
+            </form>
+            <td> <form action="{% url 'emp_del' i.id %}">
+                <button class="btn btn-outline-danger" type="submit">Delete</button>
+              </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock content %}
